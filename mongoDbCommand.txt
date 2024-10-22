@@ -1,0 +1,132 @@
+Microsoft Windows [Version 10.0.22631.4169]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\sameer>mongosh
+Current Mongosh Log ID: 6717521830d9d8c51686b01c
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.2
+Using MongoDB:          8.0.1
+Using Mongosh:          2.3.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-10-22T12:26:43.433+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   72.00 KiB
+test> use local
+switched to db local
+local> show collection
+MongoshInvalidInputError: [COMMON-10001] 'collection' is not a valid argument for "show".
+local>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+local>
+
+local>
+
+C:\Users\sameer>mongosh
+Current Mongosh Log ID: 67175354e8950408cc86b01c
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.2
+Using MongoDB:          8.0.1
+Using Mongosh:          2.3.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-10-22T12:26:43.433+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+test> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    72.00 KiB
+test> use dommy
+switched to db dommy
+dommy> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+dommy> db.students.insertOne({name:'sameer',age:12})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67175511e8950408cc86b01d')
+}
+dommy> db.students.insertOne({name:'sameerKhan'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6717558be8950408cc86b01e')
+}
+dommy> db.students.insertMany([{name:'ppp',age:45,password:6565},{name:'hff',age:44,password:565},{name:'pp',age:45,password:656}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('671756a5e8950408cc86b01f'),
+    '1': ObjectId('671756a5e8950408cc86b020'),
+    '2': ObjectId('671756a5e8950408cc86b021')
+  }
+}
+dommy> db.students.find()
+[
+  {
+    _id: ObjectId('67175511e8950408cc86b01d'),
+    name: 'sameer',
+    age: 12
+  },
+  { _id: ObjectId('6717558be8950408cc86b01e'), name: 'sameerKhan' },
+  {
+    _id: ObjectId('671756a5e8950408cc86b01f'),
+    name: 'ppp',
+    age: 45,
+    password: 6565
+  },
+  {
+    _id: ObjectId('671756a5e8950408cc86b020'),
+    name: 'hff',
+    age: 44,
+    password: 565
+  },
+  {
+    _id: ObjectId('671756a5e8950408cc86b021'),
+    name: 'pp',
+    age: 45,
+    password: 656
+  }
+]
+dommy> db.students.findOne({name:'sameer'})
+{ _id: ObjectId('67175511e8950408cc86b01d'), name: 'sameer', age: 12 }
+dommy> db.students.insertOne({name:'sameer',age:12})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6717583de8950408cc86b022')
+}
+dommy> db.students.insertOne({name:'sameer',age:11})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67175848e8950408cc86b023')
+}
+dommy> db.students.find({name:'sameer'})
+[
+  {
+    _id: ObjectId('67175511e8950408cc86b01d'),
+    name: 'sameer',
+    age: 12
+  },
+  {
+    _id: ObjectId('6717583de8950408cc86b022'),
+    name: 'sameer',
+    age: 12
+  },
+  {
+    _id: ObjectId('67175848e8950408cc86b023'),
+    name: 'sameer',
+    age: 11
+  }
+]
+dommy> db.students.findOne({name:'sameer'})
+{ _id: ObjectId('67175511e8950408cc86b01d'), name: 'sameer', age: 12 }
+dommy> db.students.findOne({_id: ObjectId('67175848e8950408cc86b023')})
+{ _id: ObjectId('67175848e8950408cc86b023'), name: 'sameer', age: 11 }
+dommy>                                                
