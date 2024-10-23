@@ -1,0 +1,140 @@
+Microsoft Windows [Version 10.0.22631.4169]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\sameer>mongosh
+Current Mongosh Log ID: 671923bd5b3f0d155786b01c
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.2
+Using MongoDB:          8.0.1
+Using Mongosh:          2.3.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-10-22T12:26:43.433+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> db
+test
+test> show
+MongoshInvalidInputError: [COMMON-10001] 'undefined' is not a valid argument for "show".
+test> use dommy
+switched to db dommy
+dommy> db.students.find()
+[
+  {
+    _id: ObjectId('6718a671be53d632a486b01d'),
+    name: 'sameer',
+    age: 24
+  },
+  {
+    _id: ObjectId('6718a694be53d632a486b01e'),
+    name: 'sameerKhan',
+    age: 14
+  },
+  { _id: ObjectId('6718a6c6be53d632a486b01f'), name: 'kunal', age: 25 },
+  { _id: ObjectId('6718a70ebe53d632a486b020'), name: 'abc', age: 22 },
+  { _id: ObjectId('6718a70ebe53d632a486b021'), name: 'tosib', age: 67 },
+  {
+    _id: ObjectId('6718aa993115c159b15c0b7c'),
+    name: 'sameer',
+    age: 24
+  },
+  {
+    _id: ObjectId('6718aa993115c159b15c0b7d'),
+    name: 'sameerKhan',
+    age: 14
+  },
+  { _id: ObjectId('6718aa993115c159b15c0b7e'), name: 'kunal', age: 25 },
+  { _id: ObjectId('6718aa993115c159b15c0b7f'), name: 'abc', age: 22 },
+  { _id: ObjectId('6718aa993115c159b15c0b80'), name: 'tosib', age: 67 }
+]
+dommy> db.students.updateOne({name:'kunal'},{$set :{name:'sifa'}}
+...
+...
+... db.students.find()
+Uncaught:
+SyntaxError: Unexpected token, expected "," (4:0)
+
+  2 |
+  3 |
+> 4 | db.students.find()
+    | ^
+  5 |
+
+dommy> db.students.updateOne({name:ddf},{$set:{name:'sifa'}})
+ReferenceError: ddf is not defined
+dommy> db.students.updateOne({name:'kunal'},{$set:{name:'sifa'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dommy> db.students.find()
+[
+  {
+    _id: ObjectId('6718a671be53d632a486b01d'),
+    name: 'sameer',
+    age: 24
+  },
+  {
+    _id: ObjectId('6718a694be53d632a486b01e'),
+    name: 'sameerKhan',
+    age: 14
+  },
+  { _id: ObjectId('6718a6c6be53d632a486b01f'), name: 'sifa', age: 25 },
+  { _id: ObjectId('6718a70ebe53d632a486b020'), name: 'abc', age: 22 },
+  { _id: ObjectId('6718a70ebe53d632a486b021'), name: 'tosib', age: 67 },
+  {
+    _id: ObjectId('6718aa993115c159b15c0b7c'),
+    name: 'sameer',
+    age: 24
+  },
+  {
+    _id: ObjectId('6718aa993115c159b15c0b7d'),
+    name: 'sameerKhan',
+    age: 14
+  },
+  { _id: ObjectId('6718aa993115c159b15c0b7e'), name: 'kunal', age: 25 },
+  { _id: ObjectId('6718aa993115c159b15c0b7f'), name: 'abc', age: 22 },
+  { _id: ObjectId('6718aa993115c159b15c0b80'), name: 'tosib', age: 67 }
+]
+dommy> db.students.delete({name:'kunal',age:25})
+TypeError: db.students.delete is not a function
+dommy> db.students.deleteOne({name:'kunal',age:25})
+{ acknowledged: true, deletedCount: 1 }
+dommy> db.students.fine()
+TypeError: db.students.fine is not a function
+dommy> db.students.find()
+[
+  {
+    _id: ObjectId('6718a671be53d632a486b01d'),
+    name: 'sameer',
+    age: 24
+  },
+  {
+    _id: ObjectId('6718a694be53d632a486b01e'),
+    name: 'sameerKhan',
+    age: 14
+  },
+  { _id: ObjectId('6718a6c6be53d632a486b01f'), name: 'sifa', age: 25 },
+  { _id: ObjectId('6718a70ebe53d632a486b020'), name: 'abc', age: 22 },
+  { _id: ObjectId('6718a70ebe53d632a486b021'), name: 'tosib', age: 67 },
+  {
+    _id: ObjectId('6718aa993115c159b15c0b7c'),
+    name: 'sameer',
+    age: 24
+  },
+  {
+    _id: ObjectId('6718aa993115c159b15c0b7d'),
+    name: 'sameerKhan',
+    age: 14
+  },
+  { _id: ObjectId('6718aa993115c159b15c0b7f'), name: 'abc', age: 22 },
+  { _id: ObjectId('6718aa993115c159b15c0b80'), name: 'tosib', age: 67 }
+]
+dommy>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+dommy>
