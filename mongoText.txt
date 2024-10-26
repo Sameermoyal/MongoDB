@@ -1,0 +1,23 @@
+1.db.users.insertOne({name:"sameer",eamil:"sameerab827@gmail.com",age:24})
+
+
+2.db.users.find()
+
+3.db.users.findOne({eamil:'sameerab827@gmail.com'})
+
+4.db.users.updateOne({name:'sameer'},{$set :{age:27}})
+
+5. db.users.updateOne({  isActive: true,},{$set :{email:'abc@gmil.com'}})
+
+
+6.   db.users.count()
+
+7.   db.users.deleteMany({  isActive: false})
+
+8.   db.users.find({hobbies:'hiking'})
+
+9.   db.users.find({age:{$gt:25},hobbies:'reading'})
+
+
+
+10   db.users.deleteMany({age:{$lt:30},hobbies:{$ne:"hiking"}})
