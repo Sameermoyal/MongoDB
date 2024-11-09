@@ -1,0 +1,48 @@
+Most common used methods in js
+Post cover image
+Commonly Asked JavaScript Methods in Interviews
+1. Array Methods
+map(): Creates a new array populated with the results of calling a provided function on every element in the calling array.
+filter(): Creates a new array with all elements that pass the test implemented by the provided function.
+reduce(): Executes a reducer function on each element of the array, resulting in a single output value.
+forEach(): Executes a provided function once for each array element.
+find(): Returns the first element in the array that satisfies the provided testing function.
+slice(): Returns a shallow copy of a portion of an array into a new array object.
+splice(): Changes the contents of an array by removing or replacing existing elements and/or adding new elements.
+concat(): Merges two or more arrays into a new array.
+includes(): Determines whether an array includes a certain value among its entries.
+some(): Tests whether at least one element in the array passes the provided function.
+every(): Tests whether all elements in the array pass the provided function.
+2. String Methods
+split(): Splits a string into an array of substrings.
+replace(): Returns a new string with some or all matches of a pattern replaced by a replacement.
+substring(): Returns the part of the string between the start and end indexes.
+trim(): Removes whitespace from both ends of a string.
+charAt(): Returns the character at a specified index.
+includes(): Determines whether one string may be found within another string.
+3. Object Methods
+Object.keys(): Returns an array of a given object’s property names.
+Object.values(): Returns an array of a given object’s property values.
+Object.entries(): Returns an array of a given object’s own enumerable property [key, value] pairs.
+Object.assign(): Copies the values of all enumerable own properties from one or more source objects to a target object.
+4. Number Methods
+parseInt(): Parses a string and returns an integer.
+parseFloat(): Parses a string and returns a floating-point number.
+toFixed(): Formats a number using fixed-point notation.
+toString(): Returns a string representing the specified number.
+5. Miscellaneous Methods
+setTimeout(): Calls a function or evaluates an expression after a specified number of milliseconds.
+setInterval(): Repeatedly calls a function or executes a code snippet, with a fixed time delay between each call.
+JSON.stringify(): Converts a JavaScript object or value to a JSON string.
+JSON.parse(): Parses a JSON string, constructing the JavaScript value or object described by the string.
+Promise.all(): Waits for all promises to be resolved or for any to be rejected.
+fetch(): Starts the process of fetching a resource from the network.
+6. Date Methods
+getDate(): Returns the day of the month for the specified date according to local time.
+getDay(): Returns the day of the week for the specified date according to local time.
+getFullYear(): Returns the year of the specified date according to local time.
+toISOString(): Returns a string in simplified extended ISO format (ISO 8601).
+7. Function Methods
+call(): Calls a function with a given this value and arguments provided individually.
+apply(): Calls a function with a given this value, and arguments provided as an array.
+bind(): Creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
