@@ -1,0 +1,128 @@
+
+// 1.What are all the orders with status "A"? 
+db.sales.aggregate({$match:{status:"A"}})
+
+//2. How can I find orders placed in January 2024?
+db.sales.aggregate({$match:{date:{$gte:ISODate("2024-01-01"),$lt:ISODate("2024-02-01")}}})
+
+//3. What orders have a quantity greater than 2? 
+db.sales.aggregate({$match:{quantity:{$gt:2}}})
+
+//4. Which orders are from the "Electronics" category? 
+db.sales.aggregate({$match:{category:"Electronis"}})
+
+
+//5. How can I group orders by product and find the total quantity sold for each product? 
+db.sales.aggregate({$group:{_id:"$product",totalQuantitySold:{$sum:"$quantity"}}})
+
+db.sales.aggregate(
+  {$group:{ _id:"$null",totalQuantitySold:{$sum:"$amount"}}}
+) 
+
+
+//6. What is the total amount spent by customers?
+
+db.sales.aggregate(
+  {$group:{ _id:"$customerId",totalQuantitySold:{$sum:"$amount"}}}
+)
+
+//7. How many orders are there in status "B"?
+db.sales.aggregate({$match:{status:"B"}},{$count:"totalCount"})
+
+//8. What is the average amount spent per order?
+db.sales.aggregate({$group:{_id:null,"avgAmount":{$avg:"$amount"}}})
+
+//9. How can I sort orders by amount in descending order?
+db.sales.aggregate(
+  [{$sort:{amount:-1}}]
+)
+
+//10. What is the order of customers based on their total spending?
+db.sales.aggregate(
+  [{$group:{_id:"$customerId",totalSpent:{$sum:"$amount"}}},{$sort:{"totalSpent":-1}}]
+)
+
+//  11. How can I sort orders by date in ascending order?
+db.sales.aggregate(
+  [{$sort:{date:+1}}]
+  
+)
+
+
+//12. What are the products sorted by price in descending order? 
+
+db.sales.aggregate(
+  [{$sort:{amount:-1}}]
+)
+
+//13. How can I reshape my output to show only the product name and amount?
+db.sales.aggregate(
+  [{$project:{amount:1,product:1,_id:0}}]
+)
+db.sales.aggregate(
+  [{$project:{amount:1,product:1,_id:0}}]
+)
+// 14. What if I want to rename the field "amount" to "totalSpent"?
+db.sales.aggregate(
+  [{$project:{_id:0,"totalSpend":"$amount"}}]
+)
+
+// 15. How can I include only order_id and customer in the output? 
+db.sales.aggregate(
+  [{$project:{customerId:1,_id:1}}]
+)
+
+
+// /16. How can I limit my results to show only the first 3 orders?
+
+db.sales.aggregate(
+  {$limit:3}
+)
+
+
+// 17. What if I only want to see the top 2 customers based on spending?
+db.sales.aggregate(
+  {$group:{_id:"$customerId",totalSpent:{$sum:"$amount"}}},
+  {$sort:{totalSpend:+1}},{$limit:2}
+)
+
+//18. How can I skip the first order and see the rest?
+db.sales.aggregate(
+  {$skip:1}
+)
+
+//19. What happens if I skip the first customer in a sorted list? 
+
+db.sales.aggregate(
+  {$sort:{amount:+1}},
+  {$skip:1}
+)
+
+//20. How can I join orders with customer details from another collection? 
+
+db.sales.aggregate(
+  {$lookup:{
+    from:"customers",
+   localField:"customerId",
+    foreignField:"_id",
+    as:"customerDetails"
+  }}
+)
+//21. What if I only want orders from customers whose names start with "A"?
+
+
+db.sales.aggregate(
+  {$lookup:{
+    from:"customers",
+   localField:"customerId",
+    foreignField:"_id",
+    as:"customerDetails"
+  }},{$match:{"customerDetails.name":{$regex:"^A"}}}
+)
+
+//22. How can I add a field that calculates the total price of each order?
+
+
+db.sales.aggregate(
+  {$addFields:{totalPrice:{$multiply:["$quantity","$amount"]}}}
+)
